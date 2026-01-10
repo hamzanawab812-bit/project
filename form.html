@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    body{
+      margin:0px;
+      padding:0px;
+      font-family:Arial, Helvetica, sans-serif;
+
+    }
+     .center{
+      text-align: center;
+      padding:30px;
+     }
+   .main{
+   
+    display:grid;
+    grid-template-columns:1fr 1fr ;
+    grid-gap:30px;
+      margin:40px; ; 
+      background-color:#ffffff;
+      align-items:stretch ;
+    
+   }
+   .one{
+    padding:20px;
+   }
+    input{
+    margin-top:10px;
+ 
+    }
+     input,textarea{
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+     }
+   .one,.two{
+  
+    /* border: 1px solid black; */
+    height: 500px;
+    box-sizing: border-box;
+   }
+   
+
+   
+   .two img{
+   
+    
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius:5px; 
+
+   }
+   
+  .row{
+    display:flex;
+   
+    gap:20px;
+  }
+  .form-group{
+    
+    flex:1;
+    display: flex;;
+    flex-direction: column;
+  }
+  input {
+  
+      /* dono inputs equal width */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+label{
+  margin-top:10px ;
+  font-size:15px ;
+  font-weight: 600;
+} button{
+  padding:10px;
+  margin-top:10px ;
+  background-color:rgb(75, 139, 15) ;
+  color:white;
+  border:none;
+cursor: pointer;
+border-radius: 5px;;
+}
+textarea{
+  border-radius:5px; ;
+  border: 1px solid #ccc;
+}
+
+  
+   </style>
+</head>
+<body>
+  <div class="center"> <h1 >Contact Form #08</h1></div>
+       
+         <div class="main">
+           <div class="one">
+            <h1>Get in touch with us</h1>
+            <form action="">
+              <div class="row">
+                <div class="form-group">
+                <label for="name">FULL NAME:</label>
+             <input type="text" placeholder="Full name" id="name" >
+             </div>
+               <div class="form-group">
+                 <label for="email">EMAIL ADRESS:</label> 
+                  
+             <input type="email" placeholder="Email" id="email">
+             </div>
+               </div>
+               <!-- end of row -->
+                <div class="form-group">
+              <label for="sub">SUBJECT</label>
+             <input type="text" placeholder="Subjecct" id="sub">
+             </div>
+             <div class="form-group">
+             <label for="textarea">Message</label> <br>
+             <textarea name="" id="textarea" rows="5" col="50" placeholder="Message"></textarea> 
+             </div>
+           
+             <button type="submit">Send Message</button>
+           
+            </form>
+           </div> 
+           <div class="two"> <img src="../saylaniassinement/window.png" alt=""      ></div>
+         </div>
+</body>
+</html>
