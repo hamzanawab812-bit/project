@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Layout Concepts</title>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+/* HEADER */
+header{
+height:80px;
+background:#222;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* USING CALC() */
+main{
+height:calc(100vh - 80px);
+display:grid;
+grid-template-columns:250px 1fr;
+}
+
+/* SIDEBAR */
+aside{
+background:#f0f0f0;
+padding:20px;
+}
+
+/* CONTENT AREA */
+.content{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:20px;
+}
+
+/* ANIMATION BOX */
+.box{
+width:120px;
+height:120px;
+background:#007bff;
+border-radius:10px;
+}
+
+/* KEYFRAMES */
+@keyframes rotateScale{
+from{
+transform:rotate(0deg) scale(1);
+}
+to{
+transform:rotate(360deg) scale(1.2);
+}
+}
+
+.animate{
+animation:rotateScale 3s infinite alternate;
+}
+
+/* CALC WIDTH EXAMPLE */
+.calc-example{
+width:calc(100% - 40px);
+padding:20px;
+background:#ddd;
+text-align:center;
+}
+
+/* MEDIA QUERIES */
+
+/* MOBILE */
+@media(max-width:600px){
+main{
+grid-template-columns:1fr;
+}
+
+aside{
+display:none;
+}
+
+header{
+background:#444;
+}
+}
+
+/* TABLET */
+@media(min-width:601px) and (max-width:900px){
+main{
+grid-template-columns:150px 1fr;
+}
+
+header{
+background:#555;
+}
+}
+
+/* DESKTOP */
+@media(min-width:901px){
+header{
+background:#222;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Modern CSS Concepts Demo</h1>
+</header>
+
+<main>
+
+<aside>
+<h3>Sidebar</h3>
+<p>This sidebar is part of a CSS Grid layout.</p>
+</aside>
+
+<section class="content">
+
+<h2>calc() Example</h2>
+
+<div class="calc-example">
+Width = calc(100% - 40px)
+</div>
+
+<p>
+The main section height uses:<br>
+<b>height: calc(100vh - 80px)</b><br>
+This means screen height minus header height.
+</p>
+
+<h2>Animation Example</h2>
+
+<div class="box animate"></div>
+
+<p>
+This box uses <b>@keyframes</b> to rotate and scale.
+</p>
+
+<h2>Flexbox Centering</h2>
+
+<p>
+Flexbox is used here to center elements vertically and horizontally.
+</p>
+
+<h2>Grid Layout</h2>
+
+<p>
+Grid creates the main layout with sidebar and content.
+</p>
+
+</section>
+
+</main>
+
+</body>
+</html>
