@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Student Management System</h1>
+
+    <input type="text" id="id" placeholder="Student ID">
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="class" placeholder="Class">
+    <button onclick="addStudent()">Add Student</button>
+
+    <br><br>
+
+    <input type="text" id="search" placeholder="Search by Name"
+           onkeyup="searchStudent()">
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="studentTable"></tbody>
+    </table>
+
+</div>
+
+<script>
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+displayStudents();
+
+function addStudent() {
+
+    let id = document.getElementById("id").value;
+    let name = document.getElementById("name").value;
+    let studentClass = document.getElementById("class").value;
+
+    if(id === "" || name === "" || studentClass === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let student = {
+        id,
+        name,
+        studentClass
+    };
+
+    students.push(student);
+
+    localStorage.setItem("students", JSON.stringify(students));
+
+    displayStudents();
+
+    document.getElementById("id").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("class").value = "";
+}
+
+function displayStudents() {
+
+    let table = document.getElementById("studentTable");
+
+    table.innerHTML = "";
+
+    students.forEach((student, index) => {
+
+        table.innerHTML += `
+        <tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.studentClass}</td>
+            <td>
+                <button class="delete-btn"
+                        onclick="deleteStudent(${index})">
+                        Delete
+                </button>
+            </td>
+        </tr>
+        `;
+    });
+}
+
+function deleteStudent(index) {
+
+    students.splice(index, 1);
+
+    localStorage.setItem("students",
+        JSON.stringify(students));
+
+    displayStudents();
+}
+
+function searchStudent() {
+
+    let searchValue =
+        document.getElementById("search")
+        .value.toLowerCase();
+
+    let table =
+        document.getElementById("studentTable");
+
+    table.innerHTML = "";
+
+    students
+    .filter(student =>
+        student.name.toLowerCase()
+        .includes(searchValue))
+    .forEach((student, index) => {
+
+        table.innerHTML += `
+        <tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.studentClass}</td>
+            <td>
+                <button class="delete-btn"
+                onclick="deleteStudent(${index})">
+                Delete
+                </button>
+            </td>
+        </tr>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
